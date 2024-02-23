@@ -6,48 +6,46 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Title from "./Title";
-
-function createData(id: number, title: string, description: string) {
-  return { id, title, description };
-}
-
-const rows = [
-  createData(0, "Node.js developer", "Node.js developer"),
-  createData(1, "C# developer", "C# developer"),
-  createData(2, "Python developer", "Python developer"),
-  createData(3, "Rubi developer", "Rubi developer"),
-  createData(4, "Java developer", "Java developer"),
-];
+import {
+  Grid,
+  CardActionArea,
+  Card,
+  CardContent,
+  Typography,
+  CardMedia,
+} from "@mui/material";
 
 // function preventDefault(event: React.MouseEvent) {
 //   event.preventDefault();
 // }
 
-export default function Vacancies() {
+export default function Vacancies({ vacancy }: { vacancy: any }) {
   return (
-    <React.Fragment>
-      <Title>Vacancies list</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell align="right">Job applications</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.title}</TableCell>
-              <TableCell>{row.description}</TableCell>
-              <TableCell align="right">X</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      {/* <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        See more vacancies
-      </Link> */}
-    </React.Fragment>
+    <Grid item xs={2} md={6}>
+      <CardActionArea component="a" href="#">
+        <Card key={vacancy.id} sx={{ display: "flex" }}>
+          <CardContent sx={{ flex: 1 }}>
+            <Typography component="h2" variant="h5">
+              {vacancy.title}
+            </Typography>
+            <Typography variant="subtitle1" color="text.secondary">
+              Lorem ipsum
+            </Typography>
+            <Typography variant="subtitle1" paragraph>
+              {vacancy.description}
+            </Typography>
+            <Typography variant="subtitle1" color="primary">
+              Apply now!
+            </Typography>
+          </CardContent>
+          {/* <CardMedia
+            component="img"
+            sx={{ width: 160, display: { xs: "none", sm: "block" } }}
+            image={vacancy.image}
+            alt={vacancy.imageLabel}
+          /> */}
+        </Card>
+      </CardActionArea>
+    </Grid>
   );
 }
