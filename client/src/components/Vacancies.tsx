@@ -31,14 +31,16 @@ export default function Vacancies() {
         <TableHead>
           <TableRow>
             <TableCell>Title</TableCell>
-            <TableCell align="right">Description</TableCell>
+            <TableCell>Description</TableCell>
+            <TableCell align="right">Job applications</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.title}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
+              <TableCell>{row.description}</TableCell>
+              <TableCell align="right">X</TableCell>
             </TableRow>
           ))}
         </TableBody>
