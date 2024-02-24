@@ -1,11 +1,4 @@
 import * as React from "react";
-import Link from "@mui/material/Link";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Title from "./Title";
 import {
   Grid,
   CardActionArea,
@@ -19,7 +12,7 @@ import {
 //   event.preventDefault();
 // }
 
-export default function Vacancies({ vacancy }: { vacancy: any }) {
+export default function Vacancy({ vacancy }: { vacancy: any }) {
   return (
     <Grid item xs={2} md={6}>
       <CardActionArea component="a" href="#">

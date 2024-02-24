@@ -1,16 +1,8 @@
 import React from "react";
-import logo from "../logo.svg";
 import "../App.css";
-import {
-  createTheme,
-  ThemeProvider,
-  Box,
-  Container,
-  Grid,
-  Paper,
-} from "@mui/material";
+import { createTheme, ThemeProvider, Container, Grid } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import Vacancies from "./Vacancies";
+import Vacancy from "./Vacancy";
 
 const darkTheme = createTheme({
   palette: {
@@ -58,7 +50,7 @@ function App() {
         <main>
           <Grid container spacing={4}>
             {rows.map((vacancy) => (
-              <Vacancies vacancy={vacancy} />
+              <Vacancy vacancy={vacancy} />
             ))}
           </Grid>
         </main>
