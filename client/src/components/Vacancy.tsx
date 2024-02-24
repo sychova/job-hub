@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   CardActionArea,
@@ -6,13 +6,18 @@ import {
   CardContent,
   Typography,
   CardMedia,
+  Button,
 } from "@mui/material";
+import JobApplication from "./JobApplication";
 
 // function preventDefault(event: React.MouseEvent) {
 //   event.preventDefault();
 // }
 
 export default function Vacancy({ vacancy }: { vacancy: any }) {
+  const [jobApplicationModalState, setJobApplicationModalState] =
+    useState(false);
+
   return (
     <Grid item xs={2} md={6}>
       <CardActionArea component="a" href="#">
@@ -27,9 +32,12 @@ export default function Vacancy({ vacancy }: { vacancy: any }) {
             <Typography variant="subtitle1" paragraph>
               {vacancy.description}
             </Typography>
-            <Typography variant="subtitle1" color="primary">
+            <Button
+              onClick={() => setJobApplicationModalState(true)}
+              color="primary"
+            >
               Apply now!
-            </Typography>
+            </Button>
           </CardContent>
           {/* <CardMedia
             component="img"
@@ -39,6 +47,12 @@ export default function Vacancy({ vacancy }: { vacancy: any }) {
           /> */}
         </Card>
       </CardActionArea>
+      {jobApplicationModalState && (
+        <JobApplication
+          open={jobApplicationModalState}
+          onClose={() => setJobApplicationModalState(false)}
+        />
+      )}
     </Grid>
   );
 }
