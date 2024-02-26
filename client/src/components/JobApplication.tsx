@@ -6,6 +6,22 @@ import { TextField, Box, Typography, Modal, Button } from "@mui/material";
 // }
 
 export default function JobApplication({ onClose, open }: any) {
+  const handleApplication = async () => {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "vacancies/apply",
+        {
+          method: "GET",
+        }
+      );
+
+      const data = await response.json();
+      console.log("dataaa", data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Modal
       open={open}
@@ -41,7 +57,10 @@ export default function JobApplication({ onClose, open }: any) {
           size="large"
           variant="contained"
           color="primary"
-          onClick={() => onClose()}
+          onClick={() => {
+            handleApplication();
+            onClose();
+          }}
         >
           Apply
         </Button>
