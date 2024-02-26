@@ -4,7 +4,7 @@ import cors from "cors";
 import { createDatabase } from "typeorm-extension";
 
 import { ormconfig, AppDataSource } from "../data-source";
-import vacanciesRouter from "./routes";
+import { vacanciesRouter, applicationsRouter } from "./routes";
 
 dotenv.config();
 
@@ -39,6 +39,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/vacancies", vacanciesRouter);
+app.use("/applications", applicationsRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

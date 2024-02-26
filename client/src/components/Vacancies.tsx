@@ -16,6 +16,7 @@ export default function Vacancies() {
       );
 
       const data = await response.json();
+
       setVacancies(data);
     } catch (error) {
       console.error(error);
@@ -29,7 +30,11 @@ export default function Vacancies() {
   return (
     <Grid container spacing={4}>
       {vacancies.map((vacancy: any) => (
-        <Vacancy key={vacancy.id} vacancy={vacancy} />
+        <Vacancy
+          key={vacancy.id}
+          vacancy={vacancy}
+          handleGetVacancies={handleGetVacancies}
+        />
       ))}
     </Grid>
   );

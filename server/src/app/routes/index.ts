@@ -1,12 +1,4 @@
-import express, { Router, Request, Response } from "express";
+import vacanciesRouter from "./vacancies";
+import applicationsRouter from "./applications";
 
-import { vacanciesController } from "../controllers";
-
-const vacanciesRouter: Router = express.Router();
-
-vacanciesRouter.get("/", vacanciesController.getAll);
-
-// vacanciesRouter.post("/", vacanciesController.create);
-vacanciesRouter.get("/apply", vacanciesController.apply);
-
-export default vacanciesRouter;
+export { vacanciesRouter, applicationsRouter };
