@@ -16,7 +16,7 @@ export default function JobApplication({ onClose, open }: any) {
       );
 
       const data = await response.json();
-      console.log("dataaa", data);
+      console.log("data", data);
     } catch (error) {
       console.error(error);
     }
