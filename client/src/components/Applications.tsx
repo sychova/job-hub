@@ -21,7 +21,7 @@ export default function Applications() {
             <TableCell align="right">Job applications</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        {/* <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.title}</TableCell>
@@ -29,7 +29,7 @@ export default function Applications() {
               <TableCell align="right">X</TableCell>
             </TableRow>
           ))}
-        </TableBody>
+        </TableBody> */}
       </Table>
       {/* <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
         See more vacancies
