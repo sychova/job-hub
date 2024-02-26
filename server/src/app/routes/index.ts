@@ -7,6 +7,6 @@ const vacanciesRouter: Router = express.Router();
 vacanciesRouter.get("/", vacanciesController.getAll);
 
 // vacanciesRouter.post("/", vacanciesController.create);
-vacanciesRouter.post("/apply", vacanciesController.apply);
+vacanciesRouter.get("/apply", vacanciesController.apply);
 
 export default vacanciesRouter;
