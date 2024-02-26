@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import Vacancy from "./Vacancy";
 
-const API_BASE = "http://localhost:5000/";
+import Vacancy from "./Vacancy";
 
 export default function Vacancies() {
   const [vacancies, setVacancies] = useState([]);
 
-  const getVacancies = async () => {
+  const handleGetVacancies = async () => {
     try {
-      const response = await fetch(API_BASE + "vacancies", {
-        method: "GET",
-      });
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "vacancies",
+        {
+          method: "GET",
+        }
+      );
 
       const data = await response.json();
       setVacancies(data);
@@ -21,7 +23,7 @@ export default function Vacancies() {
   };
 
   useEffect(() => {
-    getVacancies();
+    handleGetVacancies();
   }, []);
 
   return (
