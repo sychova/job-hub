@@ -11,18 +11,14 @@ export default function Application({
 
   const handleApplication = async (vacancyId: number) => {
     try {
-      const response = await fetch(
-        process.env.REACT_APP_BACKEND_URL + "applications",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ vacancy: vacancyId, email: applicationEmail }),
-        }
-      );
+      await fetch(process.env.REACT_APP_BACKEND_URL + "applications", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ vacancy: vacancyId, email: applicationEmail }),
+      });
 
-      const data = await response.json();
       setApplicationEmail("");
       handleGetVacancies();
     } catch (error) {
@@ -64,6 +60,7 @@ export default function Application({
           onChange={(e) => setApplicationEmail(e.target.value)}
         />
         <Button
+          disabled={applicationEmail.length === 0 ? true : false}
           size="large"
           variant="contained"
           color="primary"
