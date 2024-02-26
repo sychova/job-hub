@@ -13,4 +13,10 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
-export { getAll };
+// const create = async (req: Request, res: Response) => {}
+
+const apply = async (req: Request, res: Response) => {
+  res.json("You applied");
+};
+
+export { getAll, apply };
