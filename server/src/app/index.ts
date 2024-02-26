@@ -1,7 +1,9 @@
 import express, { Request, Response, Application } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import { createDatabase } from "typeorm-extension";
 
+import { ormconfig, AppDataSource } from "../data-source";
 import vacanciesRouter from "./routes";
 
 dotenv.config();
@@ -16,6 +18,21 @@ app.use(
     credentials: true,
   })
 );
+
+(async () => {
+  await createDatabase({
+    options: ormconfig,
+    ifNotExist: true,
+  });
+
+  AppDataSource.initialize()
+    .then(async () => {
+      console.log("Db initialized!");
+    })
+    .catch((error: any) => {
+      console.error("Error during db initialization", error);
+    });
+})();
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello world");
