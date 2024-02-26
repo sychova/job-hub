@@ -26,8 +26,8 @@ export default function Vacancies() {
 
   return (
     <Grid container spacing={4}>
-      {vacancies.map((vacancy) => (
-        <Vacancy vacancy={vacancy} />
+      {vacancies.map((vacancy: any) => (
+        <Vacancy key={vacancy.id} vacancy={vacancy} />
       ))}
     </Grid>
   );

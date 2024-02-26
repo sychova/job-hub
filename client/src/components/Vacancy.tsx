@@ -6,6 +6,7 @@ import {
   CardContent,
   Typography,
   Button,
+  CardMedia,
 } from "@mui/material";
 import JobApplication from "./JobApplication";
 
@@ -20,7 +21,7 @@ export default function Vacancy({ vacancy }: { vacancy: any }) {
   return (
     <Grid item xs={2} md={6}>
       <CardActionArea component="a" href="#">
-        <Card key={vacancy.id} sx={{ display: "flex" }}>
+        <Card sx={{ display: "flex" }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
               {vacancy.title}
@@ -38,12 +39,12 @@ export default function Vacancy({ vacancy }: { vacancy: any }) {
               Apply now!
             </Button>
           </CardContent>
-          {/* <CardMedia
+          <CardMedia
             component="img"
             sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-            image={vacancy.image}
+            image={`/vacancy-stub.jpg`}
             alt={vacancy.imageLabel}
-          /> */}
+          />
         </Card>
       </CardActionArea>
       {jobApplicationModalState && (
