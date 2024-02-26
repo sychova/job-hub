@@ -1,22 +1,30 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { TextField, Box, Typography, Modal, Button } from "@mui/material";
 
-// function preventDefault(event: React.MouseEvent) {
-//   event.preventDefault();
-// }
+export default function Application({
+  open,
+  onClose,
+  vacancyId,
+  handleGetVacancies,
+}: any) {
+  const [applicationEmail, setApplicationEmail] = useState("");
 
-export default function JobApplication({ onClose, open }: any) {
-  const handleApplication = async () => {
+  const handleApplication = async (vacancyId: number) => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_BACKEND_URL + "vacancies/apply",
+        process.env.REACT_APP_BACKEND_URL + "applications",
         {
-          method: "GET",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ vacancy: vacancyId, email: applicationEmail }),
         }
       );
 
       const data = await response.json();
-      console.log("data", data);
+      setApplicationEmail("");
+      handleGetVacancies();
     } catch (error) {
       console.error(error);
     }
@@ -52,13 +60,15 @@ export default function JobApplication({ onClose, open }: any) {
           label="Email"
           name="text"
           autoFocus
+          value={applicationEmail}
+          onChange={(e) => setApplicationEmail(e.target.value)}
         />
         <Button
           size="large"
           variant="contained"
           color="primary"
           onClick={() => {
-            handleApplication();
+            handleApplication(vacancyId);
             onClose();
           }}
         >

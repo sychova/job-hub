@@ -8,15 +8,14 @@ import {
   Button,
   CardMedia,
 } from "@mui/material";
-import JobApplication from "./JobApplication";
+import Application from "./Application";
 
 // function preventDefault(event: React.MouseEvent) {
 //   event.preventDefault();
 // }
 
-export default function Vacancy({ vacancy }: { vacancy: any }) {
-  const [jobApplicationModalState, setJobApplicationModalState] =
-    useState(false);
+export default function Vacancy({ vacancy, handleGetVacancies }: any) {
+  const [applicationModalState, setApplicationModalState] = useState(false);
 
   return (
     <Grid item xs={2} md={6}>
@@ -27,13 +26,13 @@ export default function Vacancy({ vacancy }: { vacancy: any }) {
               {vacancy.title}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
-              Current applicants: X
+              Current applicants: {vacancy.applications.length}
             </Typography>
             <Typography variant="subtitle1" paragraph>
               {vacancy.description}
             </Typography>
             <Button
-              onClick={() => setJobApplicationModalState(true)}
+              onClick={() => setApplicationModalState(true)}
               color="primary"
             >
               Apply now!
@@ -47,10 +46,12 @@ export default function Vacancy({ vacancy }: { vacancy: any }) {
           />
         </Card>
       </CardActionArea>
-      {jobApplicationModalState && (
-        <JobApplication
-          open={jobApplicationModalState}
-          onClose={() => setJobApplicationModalState(false)}
+      {applicationModalState && (
+        <Application
+          open={applicationModalState}
+          onClose={() => setApplicationModalState(false)}
+          vacancyId={vacancy.id}
+          handleGetVacancies={handleGetVacancies}
         />
       )}
     </Grid>

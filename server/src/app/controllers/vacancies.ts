@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { vacancyService } from "../services";
 
 const getAll = async (req: Request, res: Response) => {
