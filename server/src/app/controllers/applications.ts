@@ -30,7 +30,6 @@ const apply = async (req: Request, res: Response) => {
 
     if (!req.body.vacancy || !req.body.email) {
       return res.status(400).json({
-        status: false,
         message: "Email is required to apply.",
       });
     }
