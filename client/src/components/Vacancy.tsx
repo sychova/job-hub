@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   Typography,
-  CardMedia,
   Button,
 } from "@mui/material";
 import JobApplication from "./JobApplication";
