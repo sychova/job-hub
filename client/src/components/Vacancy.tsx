@@ -26,7 +26,7 @@ export default function Vacancy({ vacancy }: { vacancy: any }) {
               {vacancy.title}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
-              Lorem ipsum
+              Current applicants: X
             </Typography>
             <Typography variant="subtitle1" paragraph>
               {vacancy.description}
