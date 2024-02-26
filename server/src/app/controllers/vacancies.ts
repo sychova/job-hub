@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { lookup } from "geoip-lite";
-// import { vacancyService } from "../services";
+import { vacancyService } from "../services";
 
 const vacanciesStub = [{ id: 0, title: "Title", description: "Description" }];
 
 const getAll = async (req: Request, res: Response) => {
   try {
-    // const vacancies = await vacancyService.getAll();
+    const vacancies = await vacancyService.getAll();
 
-    res.json(vacanciesStub);
+    res.json(vacancies);
   } catch (error) {
     console.error(error);
   }
