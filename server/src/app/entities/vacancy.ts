@@ -3,7 +3,7 @@ import { Entity, Column, OneToMany } from "typeorm";
 import Base from "./base";
 import Application from "./application";
 
-@Entity()
+@Entity("vacancies")
 export default class Vacancy extends Base {
   @Column()
   title: string;
