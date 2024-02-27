@@ -41,8 +41,8 @@ export default function Applications() {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Vacancy</TableCell>
-            <TableCell align="right">Email</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell align="right">Vacancy</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
