@@ -10,10 +10,6 @@ import {
 } from "@mui/material";
 import Application from "./Application";
 
-// function preventDefault(event: React.MouseEvent) {
-//   event.preventDefault();
-// }
-
 export default function Vacancy({ vacancy, handleGetVacancies }: any) {
   const [applicationModalState, setApplicationModalState] = useState(false);
 
