@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { TextField, Box, Typography, Modal, Button } from "@mui/material";
+import {
+  TextField,
+  Box,
+  Typography,
+  Modal,
+  Button,
+  Alert,
+} from "@mui/material";
 
 export default function Application({
   open,
@@ -8,19 +15,31 @@ export default function Application({
   handleGetVacancies,
 }: any) {
   const [applicationEmail, setApplicationEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleApplication = async (vacancyId: number) => {
+  const handleApplication = async (e: any, onClose: any, vacancyId: number) => {
     try {
-      await fetch(process.env.REACT_APP_BACKEND_URL + "applications", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ vacancy: vacancyId, email: applicationEmail }),
-      });
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "applications",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ vacancy: vacancyId, email: applicationEmail }),
+        }
+      );
+
+      const { error } = await response.json();
+
+      if (error) {
+        setErrorMessage(error);
+        return;
+      }
 
       setApplicationEmail("");
       handleGetVacancies();
+      onClose();
     } catch (error) {
       console.error(error);
     }
@@ -59,14 +78,23 @@ export default function Application({
           value={applicationEmail}
           onChange={(e) => setApplicationEmail(e.target.value)}
         />
+        {errorMessage.length > 0 && (
+          <Alert
+            severity="error"
+            onClick={() => {
+              setErrorMessage("");
+            }}
+          >
+            {errorMessage}
+          </Alert>
+        )}
         <Button
           disabled={applicationEmail.length === 0 ? true : false}
           size="large"
           variant="contained"
           color="primary"
-          onClick={() => {
-            handleApplication(vacancyId);
-            onClose();
+          onClick={(e) => {
+            handleApplication(e, onClose, vacancyId);
           }}
         >
           Apply
