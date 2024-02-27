@@ -14,6 +14,4 @@ const getAll = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-// const create = async (req: Request, res: Response) => {}
-
 export { getAll };

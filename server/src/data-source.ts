@@ -1,6 +1,5 @@
 import "reflect-metadata";
 import { DataSourceOptions, DataSource } from "typeorm";
-// import { PG_DB, PG_HOST, PG_PASS, PG_USER } from "./envs";
 
 const ormconfig: DataSourceOptions = {
   name: "default",

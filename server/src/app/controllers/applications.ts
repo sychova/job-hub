@@ -18,15 +18,27 @@ const getAll = async (req: Request, res: Response): Promise<void> => {
 
 const apply = async (req: Request, res: Response): Promise<void> => {
   try {
-    // const ip: string | string[] | undefined =
-    //   req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+    const ip: string | string[] | undefined =
+      req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
-    const ipBY = "37.214.42.99";
-    const ipUS = "52.20.152.104";
-    const ip = ipBY;
+    // For testing
+    // const ipBY = "37.214.42.99";
+    // const ipUS = "52.20.152.104";
+    // const ip = ipBY;
+
+    let country: string;
+
+    if (ip) {
+      if (typeof ip === "string") {
+        country = lookup(ip)!.country?.toString();
+      }
+      if (Array.isArray(ip)) {
+        country = lookup(ip![0])!.country?.toString();
+      }
+    }
 
     const isCountryAllowed = Object.keys(AllowedCountriesEnum).includes(
-      lookup(ip)!.country.toString()
+      country!
     );
 
     if (ip && !isCountryAllowed) {
