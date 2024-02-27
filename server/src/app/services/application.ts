@@ -4,7 +4,11 @@ import { Application } from "../entities";
 const applicationRepository = AppDataSource.getRepository(Application);
 
 const getAll = async () => {
-  const applications = await applicationRepository.find();
+  const applications = await applicationRepository.find({
+    relations: {
+      vacancy: true,
+    },
+  });
 
   return applications;
 };
