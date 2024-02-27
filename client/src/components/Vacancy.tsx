@@ -41,8 +41,8 @@ export default function Vacancy({ vacancy, handleGetVacancies }: any) {
           <CardMedia
             component="img"
             sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-            image={`/vacancy-stub.jpg`}
-            alt={vacancy.imageLabel}
+            image={vacancy.logo}
+            alt={vacancy.title}
           />
         </Card>
       </CardActionArea>

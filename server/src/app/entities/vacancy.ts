@@ -11,6 +11,9 @@ export default class Vacancy extends Base {
   @Column()
   description: string;
 
+  @Column({ default: "" })
+  logo: string;
+
   @OneToMany(() => Application, (application) => application.vacancy)
   applications: Application[];
 }
