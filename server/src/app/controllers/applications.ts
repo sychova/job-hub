@@ -18,20 +18,15 @@ const apply = async (req: Request, res: Response) => {
     // const ip: string | string[] | undefined =
     //   req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
-    // // const ipBY = "37.214.42.99";
-    // // const ipUS = "52.20.152.104";
-    // // const ip = BY;
+    const ipBY = "37.214.42.99";
+    const ipUS = "52.20.152.104";
+    const ip = ipBY;
 
-    // if (ip && typeof ip === "string" && lookup(ip)?.country !== "BY") {
-    //   console.log("You're not allowed. You're not from Belarus.");
-    // } else {
-    //   console.log("You're allowed");
-    // }
-
-    if (!req.body.vacancy || !req.body.email) {
-      return res.status(400).json({
-        message: "Email is required to apply.",
+    if (ip && typeof ip === "string" && lookup(ip)?.country !== "BY") {
+      res.json({
+        error: "Sorry. Only users from Belarus can apply.",
       });
+      return;
     }
 
     const newApplication = await applicationService.apply({
