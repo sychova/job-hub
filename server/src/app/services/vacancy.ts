@@ -1,10 +1,13 @@
+import { Repository } from "typeorm";
+
 import { AppDataSource } from "../../data-source";
 import { Vacancy } from "../entities";
 
-const vacancyRepository = AppDataSource.getRepository(Vacancy);
+const vacancyRepository: Repository<Vacancy> =
+  AppDataSource.getRepository(Vacancy);
 
-const getAll = async () => {
-  const vacancies = await vacancyRepository.find({
+const getAll = async (): Promise<Vacancy[]> => {
+  const vacancies: Vacancy[] = await vacancyRepository.find({
     relations: {
       applications: true,
     },
