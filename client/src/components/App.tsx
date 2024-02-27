@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../App.css";
 import {
   createTheme,
@@ -11,6 +12,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import Vacancies from "./Vacancies";
+import Applications from "./Applications";
 import DrawerMenu from "./DrawerMenu";
 
 const darkTheme = createTheme({
@@ -28,14 +30,18 @@ function App() {
       <Button onClick={() => setDrawerMenuState(true)}>
         <MenuIcon onClick={() => setDrawerMenuState(true)} />
       </Button>
-      <Drawer open={drawerMenuState} onClose={() => setDrawerMenuState(false)}>
-        <DrawerMenu />
-      </Drawer>
-      <Container maxWidth="lg">
-        <main>
-          <Vacancies />
-        </main>
-      </Container>
+      <Router>
+        <Drawer
+          open={drawerMenuState}
+          onClose={() => setDrawerMenuState(false)}
+        >
+          <DrawerMenu />
+        </Drawer>
+        <Routes>
+          <Route path="/vacancies" element={<Vacancies />} />
+          <Route path="/applications" element={<Applications />} />
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }
