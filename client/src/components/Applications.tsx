@@ -1,39 +1,59 @@
-import { Fragment } from "react";
+import { useState, useEffect } from "react";
 import {
   Table,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
+  Container,
+  Typography,
 } from "@mui/material";
 
-// import Title from "./Title";
-
 export default function Applications() {
+  const [applications, setApplications] = useState([]);
+
+  const handleGetApplications = async () => {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "applications",
+        {
+          method: "GET",
+        }
+      );
+
+      const data = await response.json();
+
+      setApplications(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    handleGetApplications();
+  }, []);
+
   return (
-    <Fragment>
-      {/* <Title>Applications list</Title> */}
+    <Container>
+      <Typography id="modal-modal-title" variant="h6" component="h2">
+        Applications
+      </Typography>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell align="right">Job applications</TableCell>
+            <TableCell>Vacancy</TableCell>
+            <TableCell align="right">Email</TableCell>
           </TableRow>
         </TableHead>
-        {/* <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.title}</TableCell>
-              <TableCell>{row.description}</TableCell>
-              <TableCell align="right">X</TableCell>
+        <TableBody>
+          {applications.map((application: any) => (
+            <TableRow key={application.id}>
+              <TableCell>{application.email}</TableCell>
+              <TableCell align="right">{application.vacancy.title}</TableCell>
             </TableRow>
           ))}
-        </TableBody> */}
+        </TableBody>
       </Table>
-      {/* <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        See more vacancies
-      </Link> */}
-    </Fragment>
+    </Container>
   );
 }

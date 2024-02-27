@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   List,
@@ -12,10 +13,18 @@ import MailIcon from "@mui/icons-material/Mail";
 import WorkIcon from "@mui/icons-material/Work";
 
 export default function DrawerMenu() {
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ width: 250 }} role="presentation">
       <List>
-        <ListItem key={0} disablePadding>
+        <ListItem
+          key={0}
+          disablePadding
+          onClick={() => {
+            navigate("/vacancies");
+          }}
+        >
           <ListItemButton>
             <ListItemIcon>
               <WorkIcon />
@@ -24,7 +33,13 @@ export default function DrawerMenu() {
           </ListItemButton>
         </ListItem>
         <Divider />
-        <ListItem key={1} disablePadding>
+        <ListItem
+          key={1}
+          disablePadding
+          onClick={() => {
+            navigate("/applications");
+          }}
+        >
           <ListItemButton>
             <ListItemIcon>
               <MailIcon />

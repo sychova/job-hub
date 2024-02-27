@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import Vacancy from "./Vacancy";
 
@@ -28,14 +28,16 @@ export default function Vacancies() {
   }, []);
 
   return (
-    <Grid container spacing={4}>
-      {vacancies.map((vacancy: any) => (
-        <Vacancy
-          key={vacancy.id}
-          vacancy={vacancy}
-          handleGetVacancies={handleGetVacancies}
-        />
-      ))}
-    </Grid>
+    <Container maxWidth="lg">
+      <Grid container spacing={4}>
+        {vacancies.map((vacancy: any) => (
+          <Vacancy
+            key={vacancy.id}
+            vacancy={vacancy}
+            handleGetVacancies={handleGetVacancies}
+          />
+        ))}
+      </Grid>
+    </Container>
   );
 }
