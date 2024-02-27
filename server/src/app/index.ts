@@ -1,4 +1,4 @@
-import express, { Request, Response, Application } from "express";
+import express, { Application } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { createDatabase } from "typeorm-extension";
@@ -29,7 +29,7 @@ app.use(
     .then(async () => {
       console.log("Db initialized!");
     })
-    .catch((error: any) => {
+    .catch((error) => {
       console.error("Error during db initialization", error);
     });
 })();
@@ -37,7 +37,7 @@ app.use(
 app.use("/vacancies", vacanciesRouter);
 app.use("/applications", applicationsRouter);
 
-const port = process.env.PORT || 5000;
+const port: number = Number(process.env.PORT) || 5000;
 app.listen(port, () => {
   console.log(`Server is at http://localhost:${port}`);
 });
